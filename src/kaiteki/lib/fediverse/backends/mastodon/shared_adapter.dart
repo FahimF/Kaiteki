@@ -377,16 +377,17 @@ abstract class SharedMastodonAdapter<T extends MastodonClient>
 
   @override
   Future<List<Notification>> getNotifications() async {
-    final Marker? marker;
+    Marker? marker;
 
     if (this is MastodonAdapter) {
-      final markers =
-          await client.getMarkers(const {MarkerTimeline.notifications});
-      marker = markers.notifications;
-    } else {
-      marker = null;
+        try {
+            final markers =
+                await client.getMarkers(const {MarkerTimeline.notifications});
+            marker = markers.notifications;
+        } catch (e) {
+            print("Error getting marker");
+        }
     }
-
     final notifications = await client.getNotifications();
     return notifications
         .map((n) => toNotification(n, instance, marker))
