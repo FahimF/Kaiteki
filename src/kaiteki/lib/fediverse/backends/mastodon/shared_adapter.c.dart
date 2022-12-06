@@ -77,17 +77,19 @@ Notification toNotification(
 NotificationType toNotificationType(String type) {
   switch (type) {
     case "favourite":
-      return NotificationType.liked;
+        return NotificationType.liked;
     case "reblog":
-      return NotificationType.repeated;
+        return NotificationType.repeated;
     case "pleroma:emoji_reaction":
-      return NotificationType.reacted;
+        return NotificationType.reacted;
     case "follow":
-      return NotificationType.followed;
+        return NotificationType.followed;
     case "mention":
-      return NotificationType.mentioned;
+        return NotificationType.mentioned;
     case "follow_request":
-      return NotificationType.followRequest;
+        return NotificationType.followRequest;
+    case "update":
+        return NotificationType.update;
     default:
       throw Exception("Unknown notification type: $type");
   }

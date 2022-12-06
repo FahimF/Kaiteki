@@ -27,5 +27,6 @@ enum NotificationType {
   groupInvite,
   pollEnded,
   quoted,
-  replied
+  replied,
+  update,
 }

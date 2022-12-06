@@ -349,6 +349,8 @@ class NotificationWidget extends ConsumerWidget {
         return " quoted you";
       case NotificationType.replied:
         return " replied to you";
+      case NotificationType.update:
+        return " updated post";
     }
   }
 
