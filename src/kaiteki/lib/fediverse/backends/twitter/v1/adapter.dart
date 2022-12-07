@@ -16,6 +16,7 @@ import 'package:kaiteki/fediverse/backends/twitter/v1/model/user.dart'
     as twitter;
 import 'package:kaiteki/fediverse/capabilities.dart';
 import 'package:kaiteki/fediverse/model/model.dart';
+import 'package:kaiteki/fediverse/model/post_metrics.dart';
 import 'package:kaiteki/fediverse/model/timeline_query.dart';
 import 'package:kaiteki/model/auth/account.dart';
 import 'package:kaiteki/model/auth/account_key.dart';
@@ -30,17 +31,9 @@ part 'adapter.c.dart';
 class OldTwitterAdapter extends CentralizedBackendAdapter {
   final OldTwitterClient client;
 
-  factory OldTwitterAdapter(String _) {
-    return OldTwitterAdapter.custom(OldTwitterClient());
-  }
+  factory OldTwitterAdapter() => OldTwitterAdapter.custom(OldTwitterClient());
 
   OldTwitterAdapter.custom(this.client);
-
-  @override
-  Future<void> favoritePost(String id) {
-    // TODO(Craftplacer): implement favoritePost, https://github.com/Kaiteki-Fedi/Kaiteki/issues/132
-    throw UnimplementedError();
-  }
 
   @override
   Future<User> getMyself() async => toUser(await client.verifyCredentials());
@@ -165,7 +158,8 @@ class OldTwitterAdapter extends CentralizedBackendAdapter {
         "twitter.com",
         username,
       ),
-      accountSecret: AccountSecret(""),
+      // FIXME(Craftplacer): Make Twitter v1 restorable
+      accountSecret: null,
       clientSecret: null,
     );
 
@@ -231,5 +225,5 @@ class OldTwitterAdapter extends CentralizedBackendAdapter {
   }
 
   @override
-  Instance get instance => Instance(name: "Twitter", source: null);
+  Instance get instance => const Instance(name: "Twitter");
 }

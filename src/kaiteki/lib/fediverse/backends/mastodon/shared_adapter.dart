@@ -15,6 +15,8 @@ import 'package:kaiteki/fediverse/interfaces/notification_support.dart';
 import 'package:kaiteki/fediverse/interfaces/search_support.dart';
 import 'package:kaiteki/fediverse/model/model.dart';
 import 'package:kaiteki/fediverse/model/notification.dart';
+import 'package:kaiteki/fediverse/model/post_metrics.dart';
+import 'package:kaiteki/fediverse/model/post_state.dart';
 // ignore: unnecessary_import, Dart Analyzer is fucking with me
 import 'package:kaiteki/fediverse/model/timeline_kind.dart';
 import 'package:kaiteki/fediverse/model/timeline_query.dart';
@@ -255,9 +257,10 @@ abstract class SharedMastodonAdapter<T extends MastodonClient>
   }
 
   @override
-  Future<User> getUser(String username, [String? instance]) {
-    // TODO(Craftplacer): implement getUser
-    throw UnimplementedError();
+  Future<User> getUser(String username, [String? instance]) async {
+    final results = await client.searchAccounts(username);
+    final account = results.firstWhere((a) => a.username == username);
+    return toUser(account, this.instance);
   }
 
   @override

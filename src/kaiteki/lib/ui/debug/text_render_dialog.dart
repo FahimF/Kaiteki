@@ -4,7 +4,6 @@ import 'package:flutter_simple_treeview/flutter_simple_treeview.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaiteki/fediverse/model/post.dart';
 import 'package:kaiteki/theming/kaiteki/text_theme.dart';
-import 'package:kaiteki/ui/rounded_underline_tab_indicator.dart';
 import 'package:kaiteki/ui/shared/dialogs/dialog_close_button.dart';
 import 'package:kaiteki/ui/shared/dialogs/dynamic_dialog_container.dart';
 import 'package:kaiteki/ui/shared/primary_tab_bar_theme.dart';
@@ -47,15 +46,13 @@ class _TextRenderDialogState extends ConsumerState<TextRenderDialog> {
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: PrimaryTabBarTheme(
-                    child: TabBar(
-                      isScrollable: true,
-                      tabs: [
-                        Tab(text: "Raw"),
-                        Tab(text: "Parsed"),
-                        Tab(text: "Rendered"),
-                      ],
-                    ),
+                  child: TabBar(
+                    isScrollable: true,
+                    tabs: [
+                      Tab(text: "Raw"),
+                      Tab(text: "Parsed"),
+                      Tab(text: "Rendered"),
+                    ],
                   ),
                 ),
                 const Divider(height: 1),
