@@ -25,6 +25,7 @@ class KaitekiApp extends ConsumerWidget {
       themeMode: themePrefs.mode,
       title: consts.appName,
       shortcuts: shortcuts,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
